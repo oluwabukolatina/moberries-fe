@@ -39,7 +39,7 @@
 .pizza-image {
   background-size: cover;
   width: 13rem;
-background-position: 50%;
+  background-position: 50%;
 }
 
 .app-logo {
@@ -63,7 +63,36 @@ background-position: 50%;
   margin-left: 3rem;
 }
 
-.modal-image{
+.modal-image {
   height: 20rem;
-width: auto;
+  width: auto;
+}
+.order-pizza-form {
+  display: grid;
+  padding-top: 1rem;
+}
+
+.qty-container {
+  background: rgba(0, 0, 0, 0.04);
+  display: grid;
+  grid-template-columns: 60% 1fr 1fr 1fr;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-left: 0.4rem;
+  margin-bottom: 1rem;
+}
+.select-container {
+  background: rgba(0, 0, 0, 0.04);
+  display: grid;
+  grid-template-columns: 60% auto;
+  padding-top: 0.4rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  margin-bottom: 1rem;
+}
+.select-container p{
+  /* width: 60%; */
+margin-top: auto;
+margin-bottom: auto;
 }

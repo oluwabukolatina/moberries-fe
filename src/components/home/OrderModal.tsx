@@ -8,6 +8,17 @@ type PageProps = {
   onHide: () => void;
   pizzaDetail: PizzaTypes;
 };
+
+const pizzaTypes = [
+  'Neapolitan Pizza',
+  'Chicago Pizza',
+  'Sicilian Pizza',
+  'Greek Pizza',
+  'California Pizza',
+  'Detroit Pizza',
+];
+const sizes = ['small', 'medium', 'large'];
+
 export default function OrderModal({ show, onHide, pizzaDetail }: PageProps) {
   return (
     <Modal show={show} onHide={onHide} centered>
@@ -17,13 +28,40 @@ export default function OrderModal({ show, onHide, pizzaDetail }: PageProps) {
       <Modal.Body>
         <p>{pizzaDetail.name}</p>
         <div className="pizza-image modal-image" style={{ backgroundImage: `url(${pizzaDetail.image})` }}></div>
+        <form className="order-pizza-form">
+          <div className="select-container">
+            <p>Type</p>
+            <select name="cars">
+              {pizzaTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <p className="qty-container">
+            Quantity
+            <span>-</span>3<span>+</span>
+          </p>
+          <div className="select-container">
+            <p>Size</p>
+            <select name="cars">
+              {sizes.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
+        </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        {/* <Button variant="secondary" onClick={onHide}>
           Close
-        </Button>
+        </Button> */}
         <Button variant="primary" onClick={onHide}>
-          Save Changes
+          Add To Cart
         </Button>
       </Modal.Footer>
     </Modal>
