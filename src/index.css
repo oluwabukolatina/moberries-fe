@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* font-family: 'Goblin One', cursive; */
+  font-family: 'Chela One', cursive;
+  /* background: #ffbe76; */
+  /* color: black;
+   */
+  /* color: #2e7c87; */
+  margin-right: 6rem;
+}

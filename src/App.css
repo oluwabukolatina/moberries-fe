@@ -1,0 +1,69 @@
+.home {
+  margin-left: 6rem;
+  margin-top: 1rem;
+  display: flex;
+}
+.pizzas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 75%;
+  grid-column-gap: 2rem;
+}
+.pizza {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  margin-bottom: 7%;
+  padding-left: 4%;
+  padding-right: 0%;
+  padding-top: 4%;
+  height: auto;
+  padding-bottom: 4%;
+}
+.pizza img {
+  /* width: 102px; */
+  height: 11rem;
+  /* background-size: cover; */
+  /* background-position: 50%; */
+  /* position: relative; */
+}
+.pizza-name {
+  color: #24626b;
+}
+.pizza-description {
+  padding-top: 3rem;
+  font-size: 15px;
+}
+.pizza-image {
+  background-size: cover;
+  width: 13rem;
+background-position: 50%;
+}
+
+.app-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.app-header {
+  /* background-color: #282c34; */
+  /* background: #ffbe76; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.header {
+  margin-left: 3rem;
+}
+
+.modal-image{
+  height: 20rem;
+width: auto;
+}
