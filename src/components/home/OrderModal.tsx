@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import { PizzaTypes } from './Home';
+import AppContext from '../../context/AppContext';
+import { ContextType } from '../../types/ContextTypes';
 
 type PageProps = {
-  show: boolean;
-  onHide: () => void;
   pizzaDetail: PizzaTypes;
 };
 
@@ -17,11 +16,51 @@ const pizzaTypes = [
   'California Pizza',
   'Detroit Pizza',
 ];
-const sizes = ['small', 'medium', 'large'];
+const sizeAndPricing = [
+  { size: 'small', pricing: 3 },
+  { size: 'medium', pricing: 5 },
+  { size: 'large', pricing: 8 },
+];
 
-export default function OrderModal({ show, onHide, pizzaDetail }: PageProps) {
+export default function OrderModal({ pizzaDetail }: PageProps) {
+  const { showOrderModal, hideOrderModal, pizza, onChange, addOrderToCart } = useContext(AppContext) as ContextType;
+  const [quantity, setQuantity] = useState(0);
+  const onAdd = () => {
+    setQuantity(quantity + 1);
+  };
+  const onSubtract = () => {
+    if (quantity < 1) return;
+    setQuantity(quantity - 1);
+  };
+  const getAmountFromSize = (size: string) => {
+    switch (size) {
+      case 'small':
+        return 3;
+      case 'medium':
+        return 5;
+      case 'large':
+        return 8;
+      // the default is a small pizza
+      default:
+        return 3;
+    }
+  };
+  const showTotal = () => {
+    return getAmountFromSize(pizza.size) * quantity;
+  };
+  const addToCart = () => {
+    const data = {
+      name: pizzaDetail.name,
+      amount: getAmountFromSize(pizza.size) * quantity,
+      size: pizza.size,
+      quantity,
+      image: pizzaDetail.image,
+    };
+    addOrderToCart(data);
+  };
+
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={showOrderModal} onHide={hideOrderModal} centered>
       <Modal.Header closeButton>
         <Modal.Title>{pizzaDetail.name}</Modal.Title>
       </Modal.Header>
@@ -31,7 +70,7 @@ export default function OrderModal({ show, onHide, pizzaDetail }: PageProps) {
         <form className="order-pizza-form">
           <div className="select-container">
             <p>Type</p>
-            <select name="cars">
+            <select onChange={onChange} name="size">
               {pizzaTypes.map((type) => (
                 <option key={type} value={type}>
                   {type}
@@ -42,28 +81,34 @@ export default function OrderModal({ show, onHide, pizzaDetail }: PageProps) {
 
           <p className="qty-container">
             Quantity
-            <span>-</span>3<span>+</span>
+            <span onChange={onChange} onClick={onSubtract}>
+              -
+            </span>
+            {quantity}
+            <span onClick={onAdd}>+</span>
           </p>
           <div className="select-container">
             <p>Size</p>
-            <select name="cars">
-              {sizes.map((size) => (
-                <option key={size} value={size}>
-                  {size}
+            <select onChange={onChange} name="size">
+              {sizeAndPricing.map((sp) => (
+                <option key={sp.pricing} value={sp.size}>
+                  {sp.size}
                 </option>
               ))}
             </select>
           </div>
         </form>
       </Modal.Body>
-      <Modal.Footer>
-        {/* <Button variant="secondary" onClick={onHide}>
+      {/* <Modal.Footer> */}
+      {/* <Button variant="secondary" onClick={onHide}>
           Close
         </Button> */}
-        <Button variant="primary" onClick={onHide}>
-          Add To Cart
-        </Button>
-      </Modal.Footer>
+
+      <div className="actions" onClick={addToCart}>
+        <span onClick={onSubtract}>${showTotal()}</span>
+        <p>Add To Cart</p>
+      </div>
+      {/* </Modal.Footer> */}
     </Modal>
   );
 }

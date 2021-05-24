@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { PizzaData } from '../../utils/PizzaData';
+import React, { useContext, useState } from 'react';
+import AppContext from '../../context/AppContext';
+import { ContextType } from '../../types/ContextTypes';
 import OrderModal from './OrderModal';
-// import YourOrders from './YourOrders';
+import YourOrders from './YourOrders';
 export interface PizzaTypes {
   id: number;
   name: string;
@@ -9,20 +10,13 @@ export interface PizzaTypes {
   image: string;
 }
 const Home = () => {
-  const [pizzas] = useState(PizzaData);
-  const [showOrderModal, setOrderModal] = useState(false);
+  const { pizzas, openOrderModal } = useContext(AppContext) as ContextType;
   const [pizzaDetails, setPizzaDetails] = useState({ id: 0, name: '', description: '', image: '' });
 
-  const hideOrderModal = () => {
-    setOrderModal(!showOrderModal);
-  };
-  const openOrderModal = () => {
-    setOrderModal(true);
-  };
   const getOnePizza = (param: PizzaTypes) => {
     setPizzaDetails(param);
   };
-  const displayPizzas = pizzas.map((pizza) => {
+  const displayPizzas = pizzas.map((pizza: PizzaTypes) => {
     return (
       <div
         onClick={() => {
@@ -44,8 +38,8 @@ const Home = () => {
   return (
     <div className="home">
       <div className="pizzas">{displayPizzas}</div>
-      {/* <YourOrders /> */}
-      <OrderModal show={showOrderModal} onHide={hideOrderModal} pizzaDetail={pizzaDetails} />
+      <YourOrders />
+      <OrderModal pizzaDetail={pizzaDetails} />
     </div>
   );
 };
