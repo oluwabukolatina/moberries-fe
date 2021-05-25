@@ -14,8 +14,6 @@
     "eslint-config-prettier",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint" // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-
-    
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -25,14 +23,12 @@
     "no-console": "error",
     "no-eval": "error",
     "import/first": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/prop-types": "off"
   },
   "settings": {
-
     "react": {
-
       "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-
     }
   }
 }

@@ -15,6 +15,9 @@ const AppProvider: FC<ReactNode> = ({ children }) => {
     onAdd,
     onSubtract,
     quantity,
+    page,
+    onPreviousChange,
+    onNextChange,
   } = usePizzas();
   return (
     <AppContext.Provider
@@ -30,6 +33,9 @@ const AppProvider: FC<ReactNode> = ({ children }) => {
         onAdd,
         onSubtract,
         quantity,
+        page,
+        onPreviousChange,
+        onNextChange,
       }}
     >
       {children}

@@ -9,6 +9,10 @@ const usePizzas = () => {
   const [pizza, setPizza] = useState(initialState);
   const [orders, setOrders] = useState<PizzaAddedType[]>([]);
   const [quantity, setQuantity] = useState(1);
+  const [page, setPage] = useState('userDetail');
+  const onPreviousChange = (param: string) => setPage(param);
+  const onNextChange = (param: string) => setPage(param);
+
   const onAdd = () => {
     setQuantity(quantity + 1);
   };
@@ -47,6 +51,9 @@ const usePizzas = () => {
     onAdd,
     onSubtract,
     quantity,
+    page,
+    onPreviousChange,
+    onNextChange,
   };
 };
 export default usePizzas;

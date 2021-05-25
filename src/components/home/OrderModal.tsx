@@ -94,16 +94,11 @@ export default function OrderModal({ pizzaDetail }: PageProps) {
           </div>
         </form>
       </Modal.Body>
-      {/* <Modal.Footer> */}
-      {/* <Button variant="secondary" onClick={onHide}>
-          Close
-        </Button> */}
 
       <div className="actions" onClick={addToCart}>
         <span>${showTotal()}</span>
         <p>Add To Cart</p>
       </div>
-      {/* </Modal.Footer> */}
     </Modal>
   );
 }

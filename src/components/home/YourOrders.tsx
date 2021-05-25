@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
 import { ContextType, PizzaAddedType } from '../../types/ContextTypes';
-
+import { useHistory } from 'react-router-dom';
 export default function YourOrders() {
+  const history = useHistory();
   const { orders } = useContext(AppContext) as ContextType;
 
-  const checkout = () => {};
+  const checkout = () => {
+    history.push('/checkout');
+  };
   const showTotalAmount = () => {
     return orders
       .map((da) => da.amount)

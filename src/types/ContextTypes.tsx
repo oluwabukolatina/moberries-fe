@@ -19,4 +19,7 @@ export type ContextType = {
   onAdd: () => void;
   onSubtract: () => void;
   quantity: number;
+  page: string;
+  onPreviousChange: (page: string) => void;
+  onNextChange: (page: string) => void;
 };
