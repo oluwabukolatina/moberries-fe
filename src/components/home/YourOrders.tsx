@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
 import { ContextType, PizzaAddedType } from '../../types/ContextTypes';
 import { useHistory } from 'react-router-dom';
+import Helper from '../../libs/utils';
 export default function YourOrders() {
   const history = useHistory();
   const { orders } = useContext(AppContext) as ContextType;
@@ -9,26 +10,13 @@ export default function YourOrders() {
   const checkout = () => {
     history.push('/checkout');
   };
-  const showTotalAmount = () => {
-    return orders
-      .map((da) => da.amount)
-      .reduce(function (a, b) {
-        return a + b;
-      }, 0);
-  };
-  const showQuantity = () => {
-    return orders
-      .map((da) => da.quantity)
-      .reduce(function (a, b) {
-        return a + b;
-      }, 0);
-  };
+
   const showCheckoutButton = () => {
     return (
       orders.length > 0 && (
         <div className="actions" onClick={checkout}>
-          <p>Checkout({showQuantity()})</p>
-          <span>${showTotalAmount()}</span>
+          <p>Checkout({Helper.showQuantity(orders)})</p>
+          <span>${Helper.showQuantity(orders)}</span>
         </div>
       )
     );
