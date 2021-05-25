@@ -8,6 +8,14 @@ const usePizzas = () => {
   const [showOrderModal, setOrderModal] = useState(false);
   const [pizza, setPizza] = useState(initialState);
   const [orders, setOrders] = useState<PizzaAddedType[]>([]);
+  const [quantity, setQuantity] = useState(1);
+  const onAdd = () => {
+    setQuantity(quantity + 1);
+  };
+  const onSubtract = () => {
+    if (quantity < 1) return;
+    setQuantity(quantity - 1);
+  };
 
   const hideOrderModal = () => {
     setOrderModal(!showOrderModal);
@@ -15,17 +23,30 @@ const usePizzas = () => {
   const openOrderModal = () => {
     setOrderModal(true);
   };
-  const onChange = (e: { target: { name: any; value: any } }) =>
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
     setPizza({ ...pizza, [e.target.name]: e.target.value });
 
   const addOrderToCart = (param: PizzaAddedType) => {
-    console.log(param, 'param');
     const newOrders = orders;
     newOrders.push(param);
     setOrders(newOrders);
-    console.log(orders);
+    setOrderModal(!showOrderModal);
+    setPizza(pizza);
+    setQuantity(1);
   };
 
-  return { pizzas, showOrderModal, hideOrderModal, openOrderModal, pizza, onChange, addOrderToCart };
+  return {
+    pizzas,
+    showOrderModal,
+    hideOrderModal,
+    openOrderModal,
+    pizza,
+    onChange,
+    addOrderToCart,
+    orders,
+    onAdd,
+    onSubtract,
+    quantity,
+  };
 };
 export default usePizzas;

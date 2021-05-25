@@ -5,6 +5,7 @@ export interface PizzaAddedType {
   amount: number;
   size: string;
   image: string;
+  quantity: number;
 }
 export type ContextType = {
   pizzas: PizzaTypes[];
@@ -14,4 +15,8 @@ export type ContextType = {
   pizza: PizzaAddedType;
   onChange: () => void;
   addOrderToCart: (param: PizzaAddedType) => void;
+  orders: PizzaAddedType[];
+  onAdd: () => void;
+  onSubtract: () => void;
+  quantity: number;
 };

@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Header from './components/layouts/Header';
 import AppProvider from './provider/AppProvider';
+import Checkout from './components/Checkout';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <AppProvider>
           <Header />
           <Route exact path="/" component={Home} />
+          <Route exact path="/checkout" component={Checkout} />
         </AppProvider>
       </Switch>
     </>

@@ -1,34 +1,46 @@
-import React from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useContext } from 'react';
+import AppContext from '../../context/AppContext';
+import { ContextType, PizzaAddedType } from '../../types/ContextTypes';
 
 export default function YourOrders() {
+  const { orders } = useContext(AppContext) as ContextType;
+
+  const checkout = () => {};
+  const showTotalAmount = () => {
+    return orders
+      .map((da) => da.amount)
+      .reduce(function (a, b) {
+        return a + b;
+      }, 0);
+  };
+  const showQuantity = () => {
+    return orders
+      .map((da) => da.quantity)
+      .reduce(function (a, b) {
+        return a + b;
+      }, 0);
+  };
+  const showCheckoutButton = () => {
+    return (
+      orders.length > 0 && (
+        <div className="actions" onClick={checkout}>
+          <p>Checkout({showQuantity()})</p>
+          <span>${showTotalAmount()}</span>
+        </div>
+      )
+    );
+  };
   return (
-    <div>
-      <Carousel fade>
-        <Carousel.Item>
-          <img className="d-block w-100" src="holder.js/800x400?text=First slide&bg=373940" alt="First slide" />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src="holder.js/800x400?text=Second slide&bg=282c34" alt="Second slide" />
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src="holder.js/800x400?text=Third slide&bg=20232a" alt="Third slide" />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+    <div className="orders">
+      <p>Your Orders</p>
+      {orders.map((order: PizzaAddedType, i: number) => (
+        <div key={i + 1} className="order">
+          {i + 1}
+          <p>{order.name}</p>
+          <p>${order.amount}</p>
+        </div>
+      ))}
+      {showCheckoutButton()}
     </div>
   );
 }

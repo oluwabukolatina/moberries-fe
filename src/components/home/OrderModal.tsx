@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { PizzaTypes } from './Home';
 import AppContext from '../../context/AppContext';
@@ -23,15 +23,10 @@ const sizeAndPricing = [
 ];
 
 export default function OrderModal({ pizzaDetail }: PageProps) {
-  const { showOrderModal, hideOrderModal, pizza, onChange, addOrderToCart } = useContext(AppContext) as ContextType;
-  const [quantity, setQuantity] = useState(0);
-  const onAdd = () => {
-    setQuantity(quantity + 1);
-  };
-  const onSubtract = () => {
-    if (quantity < 1) return;
-    setQuantity(quantity - 1);
-  };
+  const { showOrderModal, hideOrderModal, pizza, onChange, addOrderToCart, onAdd, onSubtract, quantity } = useContext(
+    AppContext,
+  ) as ContextType;
+
   const getAmountFromSize = (size: string) => {
     switch (size) {
       case 'small':
@@ -105,7 +100,7 @@ export default function OrderModal({ pizzaDetail }: PageProps) {
         </Button> */}
 
       <div className="actions" onClick={addToCart}>
-        <span onClick={onSubtract}>${showTotal()}</span>
+        <span>${showTotal()}</span>
         <p>Add To Cart</p>
       </div>
       {/* </Modal.Footer> */}
