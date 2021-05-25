@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <div className="header">
-      <Link to="/">MoBerries</Link>
+      <Link className="header-link" to="/">
+        MoBerries
+      </Link>
     </div>
   );
 };
