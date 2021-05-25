@@ -1,5 +1,6 @@
 .home {
   margin-left: 6rem;
+  margin-right: 6rem;
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 81% auto;
@@ -47,20 +48,12 @@
   pointer-events: none;
 }
 
-.app-header {
-  /* background-color: #282c34; */
-  /* background: #ffbe76; */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .header {
-  margin-left: 3rem;
+  padding-top: 1.3%;
+  height: 60px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%);
+  position: sticky;
+  top: 0;
 }
 
 .modal-image {
@@ -193,6 +186,6 @@ input:focus {
   color: white;
 }
 
-.order label {
+.orders-summary label {
   margin-left: 1rem;
 }
