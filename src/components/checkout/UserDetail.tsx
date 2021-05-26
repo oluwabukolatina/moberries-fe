@@ -7,6 +7,9 @@ import { ContextType } from '../../types/AppTypes';
 export default function UserDetail() {
   const { onOrderChange, checkedOutOrder } = useContext(AppContext) as ContextType;
   const { firstName, lastName, email, street } = checkedOutOrder;
+  const validateForm = () => {
+    return firstName.length > 0 && lastName.length > 0 && email.length > 0 && street.length > 0;
+  };
 
   return (
     <div className="user-detail">
@@ -34,7 +37,13 @@ export default function UserDetail() {
         </div>
       </form>
 
-      <CheckoutButtons next="creditCard" previous="home" previousName="Previous" nextName="Next" />
+      <CheckoutButtons
+        validate={validateForm()}
+        next="creditCard"
+        previous="home"
+        previousName="Previous"
+        nextName="Next"
+      />
     </div>
   );
 }

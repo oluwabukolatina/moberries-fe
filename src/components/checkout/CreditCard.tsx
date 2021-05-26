@@ -7,6 +7,9 @@ import CustomInput from '../layouts/CustomInput';
 export default function CreditCard() {
   const { onOrderChange, checkedOutOrder } = useContext(AppContext) as ContextType;
   const { cardNumber, cardExpiration, cardSecurityCode } = checkedOutOrder;
+  const validateForm = () => {
+    return cardNumber.length > 0 && cardExpiration.length > 0 && cardSecurityCode.length > 0;
+  };
 
   return (
     <div className="user-detail">
@@ -30,7 +33,13 @@ export default function CreditCard() {
         </div>
       </form>
 
-      <CheckoutButtons next="confirmation" previous="userDetail" previousName="Previous" nextName="Next" />
+      <CheckoutButtons
+        validate={validateForm()}
+        next="confirmation"
+        previous="userDetail"
+        previousName="Previous"
+        nextName="Next"
+      />
     </div>
   );
 }

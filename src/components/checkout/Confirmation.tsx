@@ -9,11 +9,12 @@ export default function Confirmation() {
   const showPageContent = () => {
     return orders.length > 0 && <OrdersSummary />;
   };
+
   return (
     <div className="user-detail">
       <h3>Order Summary</h3>
       {showPageContent()}
-      <CheckoutButtons next="" previous="creditCard" previousName="Previous" nextName="" />
+      <CheckoutButtons validate={false} next="" previous="creditCard" previousName="Previous" nextName="" />
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import AppContext from '../../context/AppContext';
 import { ContextType } from '../../types/AppTypes';
 
-type PageProps = { next: string; previous: string; previousName: string; nextName: string };
-export default function CheckoutButtons({ next, previous, previousName, nextName }: PageProps) {
+type PageProps = { next: string; previous: string; previousName: string; nextName: string; validate: boolean };
+export default function CheckoutButtons({ validate, next, previous, previousName, nextName }: PageProps) {
   const history = useHistory();
   const { onPreviousChange, onNextChange } = useContext(AppContext) as ContextType;
   const onPrevious = () => {
@@ -14,7 +15,11 @@ export default function CheckoutButtons({ next, previous, previousName, nextName
     onPreviousChange(previous);
   };
   const onNext = () => {
-    onNextChange(next);
+    if (!validate) {
+      toast.info('All fields required!');
+    } else {
+      onNextChange(next);
+    }
   };
 
   return (
