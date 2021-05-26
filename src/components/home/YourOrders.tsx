@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
-import { ContextType, PizzaAddedType } from '../../types/ContextTypes';
+import { ContextType, PizzaAddedType } from '../../types/AppTypes';
 import { useHistory } from 'react-router-dom';
 import Helper from '../../libs/utils';
 export default function YourOrders() {
@@ -16,7 +16,7 @@ export default function YourOrders() {
       orders.length > 0 && (
         <div className="actions" onClick={checkout}>
           <p>Checkout({Helper.showQuantity(orders)})</p>
-          <span>${Helper.showQuantity(orders)}</span>
+          <span>${Helper.showTotalAmount(orders)}</span>
         </div>
       )
     );

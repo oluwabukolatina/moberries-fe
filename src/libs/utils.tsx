@@ -1,4 +1,4 @@
-import { PizzaAddedType } from '../types/ContextTypes';
+import { PizzaAddedType } from '../types/AppTypes';
 
 const Helper = {
   showTotalAmount(orders: PizzaAddedType[]) {

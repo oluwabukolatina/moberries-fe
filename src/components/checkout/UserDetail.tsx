@@ -1,33 +1,40 @@
-import React from 'react';
-import CheckoutButtons from '../CheckoutButtons';
+import React, { useContext } from 'react';
+import AppContext from '../../context/AppContext';
+import CheckoutButtons from '../layouts/CheckoutButtons';
+import CustomInput from '../layouts/CustomInput';
+import { ContextType } from '../../types/AppTypes';
 
 export default function UserDetail() {
+  const { onOrderChange, checkedOutOrder } = useContext(AppContext) as ContextType;
+  const { firstName, lastName, email, street } = checkedOutOrder;
+
   return (
     <div className="user-detail">
-      <h3>First slide label</h3>
+      <h3>User Data</h3>
       <form className="order-pizza-form">
         <div className="select-container">
-          <p>Type</p>
-          <input />
+          <p>First Name</p>
+          <CustomInput onchange={onOrderChange} name="firstName" value={firstName} />
         </div>
 
         <div className="select-container">
-          <p>Type</p>
-          <input />
+          <p>LastName</p>
+          <CustomInput onchange={onOrderChange} name="lastName" value={lastName} />
         </div>
 
         <div className="select-container">
-          <p>Type</p>
-          <input />
+          <p>Email</p>
+
+          <CustomInput onchange={onOrderChange} name="email" value={email} />
         </div>
 
         <div className="select-container">
-          <p>Type</p>
-          <input />
+          <p>Address</p>
+          <CustomInput onchange={onOrderChange} name="street" value={street} />
         </div>
       </form>
 
-      <CheckoutButtons next="creditCard" previous="userDetail" previousName="Previous" nextName="Next" />
+      <CheckoutButtons next="creditCard" previous="home" previousName="Previous" nextName="Next" />
     </div>
   );
 }

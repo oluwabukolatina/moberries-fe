@@ -1,9 +1,18 @@
 import { useState } from 'react';
-import { PizzaAddedType } from '../../../types/ContextTypes';
 import { PizzaData } from '../../../utils/PizzaData';
+import { PizzaAddedType } from '../../../types/AppTypes';
 
 const usePizzas = () => {
   const initialState = { name: '', amount: 0, size: '', quantity: 0, image: '' };
+  const orderState = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    cardNumber: '',
+    cardExpiration: '',
+    cardSecurityCode: '',
+  };
   const [pizzas] = useState(PizzaData);
   const [showOrderModal, setOrderModal] = useState(false);
   const [pizza, setPizza] = useState(initialState);
@@ -12,7 +21,8 @@ const usePizzas = () => {
   const [page, setPage] = useState('userDetail');
   const onPreviousChange = (param: string) => setPage(param);
   const onNextChange = (param: string) => setPage(param);
-
+  const [checkedOutOrder, setCheckedOutOrder] = useState(orderState);
+  const [checked, setChecked] = useState(false);
   const onAdd = () => {
     setQuantity(quantity + 1);
   };
@@ -20,7 +30,6 @@ const usePizzas = () => {
     if (quantity < 1) return;
     setQuantity(quantity - 1);
   };
-
   const hideOrderModal = () => {
     setOrderModal(!showOrderModal);
   };
@@ -29,7 +38,13 @@ const usePizzas = () => {
   };
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
     setPizza({ ...pizza, [e.target.name]: e.target.value });
-
+  const onOrderChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
+    setCheckedOutOrder({ ...checkedOutOrder, [name]: value });
+  };
+  const checkTerms = () => {
+    setChecked(!checked);
+  };
   const addOrderToCart = (param: PizzaAddedType) => {
     const newOrders = orders;
     newOrders.push(param);
@@ -37,6 +52,22 @@ const usePizzas = () => {
     setOrderModal(!showOrderModal);
     setPizza(pizza);
     setQuantity(1);
+  };
+  const onSubmitCheckedOutOrders = () => {
+    const { firstName, lastName, email, street, cardExpiration, cardNumber, cardSecurityCode } = checkedOutOrder;
+    const data = {
+      firstName,
+      lastName,
+      email,
+      street,
+      cardExpiration,
+      cardNumber,
+      cardSecurityCode,
+      orders,
+      terms: checked,
+    };
+    // eslint-disable-next-line no-console
+    console.log(data);
   };
 
   return {
@@ -54,6 +85,11 @@ const usePizzas = () => {
     page,
     onPreviousChange,
     onNextChange,
+    onSubmitCheckedOutOrders,
+    onOrderChange,
+    checkedOutOrder,
+    checkTerms,
+    checked,
   };
 };
 export default usePizzas;

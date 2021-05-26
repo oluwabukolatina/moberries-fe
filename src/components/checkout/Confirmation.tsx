@@ -1,12 +1,18 @@
-import React from 'react';
-import CheckoutButtons from '../CheckoutButtons';
+import React, { useContext } from 'react';
+import CheckoutButtons from '../layouts/CheckoutButtons';
 import OrdersSummary from './OrdersSummary';
+import AppContext from '../../context/AppContext';
+import { ContextType } from '../../types/AppTypes';
 
 export default function Confirmation() {
+  const { orders } = useContext(AppContext) as ContextType;
+  const showPageContent = () => {
+    return orders.length > 0 && <OrdersSummary />;
+  };
   return (
     <div className="user-detail">
       <h3>Order Summary</h3>
-      <OrdersSummary />
+      {showPageContent()}
       <CheckoutButtons next="" previous="creditCard" previousName="Previous" nextName="" />
     </div>
   );

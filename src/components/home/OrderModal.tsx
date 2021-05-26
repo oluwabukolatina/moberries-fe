@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { PizzaTypes } from './Home';
 import AppContext from '../../context/AppContext';
-import { ContextType } from '../../types/ContextTypes';
+import { ContextType, PizzaTypes } from '../../types/AppTypes';
 
 type PageProps = {
   pizzaDetail: PizzaTypes;
@@ -26,7 +25,6 @@ export default function OrderModal({ pizzaDetail }: PageProps) {
   const { showOrderModal, hideOrderModal, pizza, onChange, addOrderToCart, onAdd, onSubtract, quantity } = useContext(
     AppContext,
   ) as ContextType;
-
   const getAmountFromSize = (size: string) => {
     switch (size) {
       case 'small':
@@ -47,7 +45,7 @@ export default function OrderModal({ pizzaDetail }: PageProps) {
     const data = {
       name: pizzaDetail.name,
       amount: getAmountFromSize(pizza.size) * quantity,
-      size: pizza.size,
+      size: pizza.size ? pizza.size : 'small',
       quantity,
       image: pizzaDetail.image,
     };
@@ -65,7 +63,7 @@ export default function OrderModal({ pizzaDetail }: PageProps) {
         <form className="order-pizza-form">
           <div className="select-container">
             <p>Type</p>
-            <select onChange={onChange} name="size">
+            <select onChange={onChange} name="type">
               {pizzaTypes.map((type) => (
                 <option key={type} value={type}>
                   {type}

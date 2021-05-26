@@ -18,6 +18,11 @@ const AppProvider: FC<ReactNode> = ({ children }) => {
     page,
     onPreviousChange,
     onNextChange,
+    onSubmitCheckedOutOrders,
+    onOrderChange,
+    checkedOutOrder,
+    checkTerms,
+    checked,
   } = usePizzas();
   return (
     <AppContext.Provider
@@ -36,6 +41,11 @@ const AppProvider: FC<ReactNode> = ({ children }) => {
         page,
         onPreviousChange,
         onNextChange,
+        onSubmitCheckedOutOrders,
+        onOrderChange,
+        checkedOutOrder,
+        checkTerms,
+        checked,
       }}
     >
       {children}
