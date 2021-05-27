@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PizzaData } from '../../../utils/PizzaData';
 import { PizzaAddedType } from '../../../types/AppTypes';
+import { toast } from 'react-toastify';
 
 const usePizzas = () => {
   const initialState = { name: '', amount: 0, size: '', quantity: 0, image: '' };
@@ -68,6 +69,11 @@ const usePizzas = () => {
     };
     // eslint-disable-next-line no-console
     console.log(data);
+    toast.success(
+      `Hi ${firstName}, your ${
+        orders.length > 1 ? 'orders have' : 'order has'
+      } been taken and will be delivered to ${street}`,
+    );
   };
 
   return {
