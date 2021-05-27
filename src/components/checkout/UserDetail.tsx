@@ -17,23 +17,23 @@ export default function UserDetail() {
       <form className="order-pizza-form">
         <div className="select-container">
           <p>First Name</p>
-          <CustomInput onchange={onOrderChange} name="firstName" value={firstName} />
+          <CustomInput type="text" onchange={onOrderChange} name="firstName" value={firstName} />
         </div>
 
         <div className="select-container">
           <p>LastName</p>
-          <CustomInput onchange={onOrderChange} name="lastName" value={lastName} />
+          <CustomInput type="text" onchange={onOrderChange} name="lastName" value={lastName} />
         </div>
 
         <div className="select-container">
           <p>Email</p>
 
-          <CustomInput onchange={onOrderChange} name="email" value={email} />
+          <CustomInput type="text" onchange={onOrderChange} name="email" value={email} />
         </div>
 
         <div className="select-container">
           <p>Address</p>
-          <CustomInput onchange={onOrderChange} name="street" value={street} />
+          <CustomInput type="text" onchange={onOrderChange} name="street" value={street} />
         </div>
       </form>
 

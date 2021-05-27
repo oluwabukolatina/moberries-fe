@@ -17,19 +17,37 @@ export default function CreditCard() {
       <form className="order-pizza-form">
         <div className="select-container">
           <p>Card Number</p>
-
-          <CustomInput onchange={onOrderChange} name="cardNumber" value={cardNumber} />
+          <CustomInput
+            type="text"
+            onchange={onOrderChange}
+            name="cardNumber"
+            value={cardNumber}
+            maxlength={Number('16')}
+          />
         </div>
 
         <div className="select-container">
           <p>Card Expiration Date</p>
-          <CustomInput onchange={onOrderChange} name="cardExpiration" value={cardExpiration} />
+          <CustomInput
+            placeholder="03/06"
+            type="text"
+            maxlength={Number('5')}
+            onchange={onOrderChange}
+            name="cardExpiration"
+            value={cardExpiration}
+          />
         </div>
 
         <div className="select-container">
           <p>Card Security Code</p>
-
-          <CustomInput onchange={onOrderChange} name="cardSecurityCode" value={cardSecurityCode} />
+          <CustomInput
+            type="string"
+            placeholder="560"
+            maxlength={Number('3')}
+            onchange={onOrderChange}
+            name="cardSecurityCode"
+            value={cardSecurityCode}
+          />
         </div>
       </form>
 
