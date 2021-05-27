@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
 import { ContextType } from '../../types/AppTypes';
+import YourOrders from '../home/YourOrders';
 import Confirmation from './Confirmation';
 import CreditCard from './CreditCard';
 import UserDetail from './UserDetail';
@@ -19,5 +20,10 @@ export default function Checkout() {
         return <UserDetail />;
     }
   };
-  return <div className="checkout">{showPage()}</div>;
+  return (
+    <div className="checkout">
+      {showPage()}
+      <YourOrders />
+    </div>
+  );
 }
