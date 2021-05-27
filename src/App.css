@@ -29,10 +29,10 @@
 }
 .pizza-name {
   color: #24626b;
+  font-size: 25px;
 }
 .pizza-description {
   padding-top: 3rem;
-  font-size: 15px;
 }
 .pizza-image {
   background-size: cover;
@@ -80,7 +80,9 @@
   padding-left: 0.4rem;
   margin-bottom: 1rem;
 }
-.qty-container span{cursor: pointer;}
+.qty-container span {
+  cursor: pointer;
+}
 .select-container {
   background: rgba(0, 0, 0, 0.04);
   display: grid;
@@ -178,6 +180,7 @@ input:focus {
   padding-top: 1rem;
   padding-bottom: 0.1rem;
   color: white;
+  cursor: pointer;
 }
 
 .orders-summary label {
