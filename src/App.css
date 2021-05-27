@@ -80,6 +80,7 @@
   padding-left: 0.4rem;
   margin-bottom: 1rem;
 }
+.qty-container span{cursor: pointer;}
 .select-container {
   background: rgba(0, 0, 0, 0.04);
   display: grid;
@@ -99,7 +100,7 @@
   justify-content: space-between;
   color: white;
   cursor: pointer;
-  padding: 1rem 1.35rem 1rem 1.1rem;
+  padding: 0.3rem 1.35rem 0rem 1.1rem;
 }
 
 .orders {
@@ -137,6 +138,7 @@
 
 .checkout-buttons {
   cursor: auto;
+  padding-bottom: 0.6rem;
 }
 
 .select-container input {
@@ -173,7 +175,7 @@ input:focus {
   text-align: center;
   background: #2e7c87;
   margin: auto auto 2rem;
-  padding-top: 1.2rem;
+  padding-top: 1rem;
   padding-bottom: 0.1rem;
   color: white;
 }
