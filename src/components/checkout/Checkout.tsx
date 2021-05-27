@@ -10,7 +10,7 @@ export default function Checkout() {
   const showPage = () => {
     switch (page) {
       case 'userDetail':
-        return <CreditCard />;
+        return <UserDetail />;
       case 'creditCard':
         return <CreditCard />;
       case 'confirmation':

@@ -1,11 +1,18 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 import AppContext from '../../context/AppContext';
 import Helper from '../../libs/utils';
 import { ContextType } from '../../types/AppTypes';
 
 export default function OrdersSummary() {
   const { orders, onSubmitCheckedOutOrders, checked, checkTerms } = useContext(AppContext) as ContextType;
-
+  const confirmUserOrder = () => {
+    if (checked) {
+      onSubmitCheckedOutOrders();
+    } else {
+      toast.info('Kindly agree to the terms');
+    }
+  };
   return (
     <div className="orders-summary">
       <p>Your Orders</p>
@@ -23,7 +30,7 @@ export default function OrdersSummary() {
         <p>Checkout({Helper.showQuantity(orders)})</p>
         <span>${Helper.showTotalAmount(orders)}</span>
       </div>
-      <div className="confirm-order" onClick={() => onSubmitCheckedOutOrders()}>
+      <div className="confirm-order" onClick={confirmUserOrder}>
         <p>Confirm Order</p>
       </div>
     </div>
